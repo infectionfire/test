@@ -10,9 +10,9 @@ import com.haulmont.cuba.core.config.defaults.DefaultInt;
 public interface Test_Config extends Config {
 
     /**
-     * @return maximum distance to create and show ContainerYard
+     * @return время, которое плюсуется к времени убытия автомобиля при проверке на то, что он уехал
      */
-    @Property("rtneo.containerYard.maximumDistanceInMeters")
-    @DefaultInt(100)
+    @Property("test.schedulingAutomaticDepartureTime")
+    @DefaultInt(1000)
     int getTimeSchedulingAutomaticDeparture();
 }
