@@ -17,6 +17,9 @@
     </data>
     <dialogMode height="600"
                 width="800"/>
+    <facets>
+        <timer id="timer_1"  delay="30000" autostart="true" repeating="true"/>
+    </facets>
     <layout expand="clientsTable"
             spacing="true">
         <filter id="filter"

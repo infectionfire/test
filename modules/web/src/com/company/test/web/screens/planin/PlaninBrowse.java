@@ -14,6 +14,8 @@ import com.haulmont.cuba.gui.app.core.inputdialog.DialogActions;
 import com.haulmont.cuba.gui.app.core.inputdialog.InputDialog;
 import com.haulmont.cuba.gui.app.core.inputdialog.InputParameter;
 import com.haulmont.cuba.gui.components.*;
+import com.haulmont.cuba.gui.model.CollectionLoader;
+import com.haulmont.cuba.gui.model.DataLoader;
 import com.haulmont.cuba.gui.screen.*;
 import com.sun.tools.javac.util.List;
 
@@ -42,6 +44,10 @@ public class PlaninBrowse extends StandardLookup<Planin> {
     private Button loadCompleted;
     @Inject
     private GroupTable<Planin> on_gate_Table;
+    @Inject
+    private CollectionLoader<Planin> planned_Dl;
+    @Inject
+    private CollectionLoader<Planin> on_gate_Dl;
 
     @Install(to = "registredTable.provider", subject = "columnGenerator")
     private Component registredTableProviderColumnGenerator(Planin planin) {
@@ -55,6 +61,7 @@ public class PlaninBrowse extends StandardLookup<Planin> {
 
     @Subscribe
     public void onInit(InitEvent event) {
+
         registredTable.addSelectionListener(selectionEvent -> {
             assignGate.setEnabled(!selectionEvent.getSelected().isEmpty());
         });
@@ -124,6 +131,7 @@ public class PlaninBrowse extends StandardLookup<Planin> {
                                 closeEvent.getValue("name"),
                                 closeEvent.getValue("phoneNumber"),
                                 closeEvent.getValue("loadCapacity"));
+                        refreshTab(planned_Dl);
                         registredTable.repaint();
                     }
                 }).show();
@@ -147,6 +155,7 @@ public class PlaninBrowse extends StandardLookup<Planin> {
                     .withCloseListener(closeEvent -> {
                         if (closeEvent.getCloseAction().equals(InputDialog.INPUT_DIALOG_OK_ACTION)) {
                             gateService.postRegistredGate(planin, closeEvent.getValue("gate"));
+                            refreshTab(on_gate_Dl);
                             registredTable.repaint();
                         }
                     }).show();
@@ -173,5 +182,9 @@ public class PlaninBrowse extends StandardLookup<Planin> {
                             new DialogAction(DialogAction.Type.NO)
                     ).show();
         }
+    }
+
+    private void refreshTab(DataLoader dl) {
+        dl.load();
     }
 }

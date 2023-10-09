@@ -8,4 +8,5 @@ import com.company.test.entity.Client;
 @LookupComponent("clientsTable")
 @LoadDataBeforeShow
 public class ClientBrowse extends StandardLookup<Client> {
+
 }

@@ -26,6 +26,9 @@
             </loader>
         </collection>
     </data>
+    <facets>
+        <timer id="timer_1" delay="30000" autostart="true" repeating="true"/>
+    </facets>
     <layout expand="tabs" spacing="true">
         <hbox id="lookupActions" spacing="true" visible="false">
             <button action="lookupSelectAction"/>
