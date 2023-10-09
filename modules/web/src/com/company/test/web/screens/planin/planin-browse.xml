@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://planinBrowse.caption"
+        messagesPack="com.company.test.web.screens.planin">
+    <data readOnly="true">
+        <collection id="planned_Dc"
+                    class="com.company.test.entity.Planin">
+            <view extends="_local">
+                <property name="providers" view="_minimal"/>
+            </view>
+            <loader id="planned_Dl">
+                <query>
+                    <![CDATA[select e from test_Planin e where e.status = '20' or e.status = '50']]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="on_gate_Dc"
+                    class="com.company.test.entity.Planin">
+            <view extends="_local">
+                <property name="providers" view="_minimal"/>
+            </view>
+            <loader id="on_gate_Dl">
+                <query>
+                    <![CDATA[select e from test_Planin e where e.status = '30' and e.condition = '20']]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <layout expand="tabs" spacing="true">
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+        <tabSheet id="tabs" width="100%">
+            <tab id="planned_tab" caption="Запланированы">
+                <groupTable id="registredTable"
+                            dataContainer="planned_Dc" width="100%">
+                    <actions>
+                        <action id="create" type="create"/>
+                        <action id="edit" type="edit"/>
+                        <action id="remove" type="remove"/>
+                        <action id="refresh" type="refresh"/>
+                        <action id="excel" type="excel"/>
+                    </actions>
+                    <columns>
+                        <column id="registerNumber"/>
+                        <column id="orderNumber"/>
+                        <column id="provider"/>
+                        <column id="plannedArrivalDate"/>
+                        <column id="carNumber"/>
+                        <column id="loadCapacity"/>
+                        <column id="name"/>
+                        <column id="phoneNumber"/>
+                        <column id="status"/>
+                        <column id="condition"/>
+                    </columns>
+                    <rowsCount/>
+                    <buttonsPanel id="buttonsPanel"
+                                  alwaysVisible="true" spacing="true" width="100%">
+                        <vbox spacing="true" width="100%">
+                            <filter id="planned_filter"
+                                    applyTo="registredTable"
+                                    dataLoader="planned_Dl" width="100%">
+                                <properties include=".*"/>
+                            </filter>
+                            <hbox>
+                                <button id="createBtn" action="registredTable.create"/>
+                                <button id="editBtn" action="registredTable.edit"/>
+                                <button id="removeBtn" action="registredTable.remove"/>
+                                <button id="refreshBtn" action="registredTable.refresh"/>
+                                <button id="excelBtn" action="registredTable.excel"/>
+                            </hbox>
+                            <hbox spacing="true">
+                                <button id="register" caption="msg://registerCar" invoke="pickStatus"/>
+                                <button id="assignGate" caption="msg://asssignGate" invoke="assignGate" enable="false"/>
+                            </hbox>
+                        </vbox>
+                    </buttonsPanel>
+                </groupTable>
+            </tab>
+            <tab id="on_gate_tab" caption="На воротах">
+                <groupTable id="on_gate_Table"
+                            dataContainer="on_gate_Dc" width="100%">
+                    <actions>
+                        <action id="create" type="create"/>
+                        <action id="edit" type="edit"/>
+                        <action id="remove" type="remove"/>
+                        <action id="refresh" type="refresh"/>
+                        <action id="excel" type="excel"/>
+                    </actions>
+                    <columns>
+                        <column id="registerNumber"/>
+                        <column id="orderNumber"/>
+                        <column id="provider"/>
+                        <column id="plannedArrivalDate"/>
+                        <column id="carNumber"/>
+                        <column id="loadCapacity"/>
+                        <column id="name"/>
+                        <column id="phoneNumber"/>
+                        <column id="status"/>
+                        <column id="condition"/>
+                    </columns>
+                    <rowsCount/>
+                    <buttonsPanel id="buttonsPanelOnGate"
+                                  alwaysVisible="true" spacing="true" width="100%">
+                        <vbox spacing="true" width="100%">
+
+                            <filter id="on_gate_filter"
+                                    applyTo="on_gate_Table"
+                                    dataLoader="on_gate_Dl">
+                                <properties include=".*"/>
+                            </filter>
+                            <hbox>
+                                <button id="createBtnOnGate" action="on_gate_Table.create"/>
+                                <button id="editBtnOnGate" action="on_gate_Table.edit"/>
+                                <button id="removeBtnOnGate" action="on_gate_Table.remove"/>
+                                <button id="refreshBtnOnGate" action="on_gate_Table.refresh"/>
+                                <button id="excelBtnOnGate" action="on_gate_Table.excel"/>
+                            </hbox>
+                            <hbox>
+                                <button id="loadCompleted" caption="msg://loadCompleted" invoke="loadCompleted" enable="false"/>
+                            </hbox>
+                        </vbox>
+
+                    </buttonsPanel>
+                </groupTable>
+            </tab>
+        </tabSheet>
+    </layout>
+</window>

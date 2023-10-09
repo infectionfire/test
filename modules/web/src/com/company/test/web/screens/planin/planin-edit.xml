@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://planinEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.test.web.screens.planin">
+    <data>
+        <instance id="planinDc"
+                  class="com.company.test.entity.Planin">
+            <view extends="_local">
+                <property name="providers" view="_minimal"/>
+            </view>
+            <loader/>
+            <collection id="providerDc" property="providers"/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="scrollBox" spacing="true">
+        <scrollBox id="scrollBox" spacing="true">
+            <form id="form" dataContainer="planinDc">
+                <column width="350px">
+                    <textField id="registerNumberField" property="registerNumber"/>
+                    <textField id="orderNumberField" property="orderNumber"/>
+                    <dateField id="plannedArrivalDateField" property="plannedArrivalDate"/>
+                    <textField id="carNumberField" property="carNumber"/>
+                    <lookupField id="loadCapacityField" property="loadCapacity"/>
+                    <textField id="nameField" property="name"/>
+                    <textField id="phoneNumberField" property="phoneNumber"/>
+                    <lookupField id="statusField" property="status"/>
+                    <lookupField id="conditionField" property="condition"/>
+                    <textField id="gateField" property="gate"/>
+                    <dateField id="registerDateField" property="registerDate"/>
+                    <dateField id="installationDateOnGateField" property="installationDateOnGate"/>
+                    <dateField id="departureIsAllowedDateField" property="departureIsAllowedDate"/>
+                    <dateField id="departureDateField" property="departureDate"/>
+                </column>
+            </form>
+            <groupBox id="providerBox" caption="msg://com.company.test.entity/Planin.provider">
+                <table id="providerTable" dataContainer="providerDc" width="100%" height="200px">
+                    <actions>
+                        <action id="add" type="add"/>
+                        <action id="exclude" type="exclude"/>
+                    </actions>
+                    <columns>
+                        <column id="name"/>
+                    </columns>
+                    <buttonsPanel>
+                        <button action="providerTable.add"/>
+                        <button action="providerTable.exclude"/>
+                    </buttonsPanel>
+                </table>
+            </groupBox>
+        </scrollBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>
