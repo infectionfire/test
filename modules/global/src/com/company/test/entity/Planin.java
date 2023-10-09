@@ -5,11 +5,13 @@ import com.company.test.enums.VehicleCondition;
 import com.company.test.enums.VehicleStatus;
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
+import com.haulmont.cuba.core.entity.annotation.PublishEntityChangedEvents;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+@PublishEntityChangedEvents
 @Table(name = "TEST_PLANIN")
 @Entity(name = "test_Planin")
 @NamePattern("%s|name")

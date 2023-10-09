@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
 
+    <view entity="test_Planin" name="planin-view" extends="_minimal">
+        <property name="registerNumber"/>
+        <property name="carNumber"/>
+        <property name="status"/>
+        <property name="condition"/>
+    </view>
 </views>
