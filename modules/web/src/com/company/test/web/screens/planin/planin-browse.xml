@@ -10,7 +10,7 @@
             </view>
             <loader id="planned_Dl">
                 <query>
-                    <![CDATA[select e from test_Planin e where e.status = '20' or e.status = '50']]>
+                    <![CDATA[select e from test_Planin e where (e.status = '10' or e.status = '20')]]>
                 </query>
             </loader>
         </collection>

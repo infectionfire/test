@@ -36,7 +36,7 @@ public class GateRepository implements BaseRepository<Gate> {
 
     public List<String> findAvailableGateNumbers() {
         List<Gate> gates= dataManager.load(Gate.class)
-                .query("select e from test_Gate e where (select count(p) from test_Planin p where p.gate = e.number) = 0 and e.workingWith <:time and e.workingUpTo>:time")
+                .query("select e from test_Gate e where (select count(p) from test_Planin p where p.gate = e.number and p.status<>90) = 0 and e.workingWith <:time and e.workingUpTo>:time")
                 .view(View.LOCAL)
                 .parameter("time", LocalTime.now())
                 .list();

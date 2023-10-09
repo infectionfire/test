@@ -160,7 +160,7 @@ public class PlaninBrowse extends StandardLookup<Planin> {
                         }
                     }).show();
         } else {
-            notifications.create(Notifications.NotificationType.ERROR).withCaption("Ворота не могут быть назначены");
+            notifications.create(Notifications.NotificationType.ERROR).withCaption("Ворота не могут быть назначены").show();
         }
     }
 

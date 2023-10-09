@@ -26,6 +26,7 @@ public class LeftStatusUpdateScheduler {
 
     @Authenticated
     @Scheduled(cron = "0 0/30 10-18 * * *")
+//    @Scheduled(initialDelay = 10000L,fixedDelay = 10000L)
     public void run() {
         List<Planin> planins = planinService.findCandidatesToLeft();
         if (!planins.isEmpty()) {

@@ -7,6 +7,7 @@
     </menu>
     <menu id = "planin" caption="Приёмка">
         <item screen="test_Planin.browse" id="planin_browser" caption="mainMsg://menu_config.planin_browser"/>
+        <item screen="test_ExtPlaninLoggingScreen" caption="mainMsg://menu_config.test_ExtPlaninLoggingScreen"/>
     </menu>
     <menu id="dictionary" caption="Справочники">
         <item screen="test_Gate.browse" id="gate_browser" caption="mainMsg://menu_config.gate_browser" openType="NEW_TAB"/>

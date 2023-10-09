@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://extPlaninLoggingScreen.caption"
+        messagesPack="com.company.test.web.screens">
+    <data>
+        <collection id="planinDc"
+                    class="com.company.test.entity.Planin">
+            <view extends="planin-view"/>
+            <loader id="planinDl">
+                <query>
+                    <![CDATA[select e from test_Planin e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <layout>
+        <scrollBox>
+        <table id="logTable"
+                   dataContainer="planinDc"
+                   width="100%"
+                   height="100%">
+                <columns>
+                    <column id="registerNumber"/>
+                    <column id="carNumber"/>
+                    <column id="status"/>
+                    <column id="condition"/>
+                    <column id="updateTs"/>
+                </columns>
+            </table>
+        </scrollBox>
+    </layout>
+</window>

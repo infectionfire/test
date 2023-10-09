@@ -6,5 +6,7 @@
         <property name="carNumber"/>
         <property name="status"/>
         <property name="condition"/>
+        <property name="createTs"/>
+        <property name="updateTs"/>
     </view>
 </views>
