@@ -57,7 +57,9 @@ public class PlaninBrowse extends StandardLookup<Planin> {
     public void onInit(InitEvent event) {
         registredTable.addSelectionListener(selectionEvent -> {
             assignGate.setEnabled(!selectionEvent.getSelected().isEmpty());
-            loadCompleted.setEnabled(!selectionEvent.getSelected().isEmpty());
+        });
+        on_gate_Table.addSelectionListener(planinSelectionEvent -> {
+            loadCompleted.setEnabled(!planinSelectionEvent.getSelected().isEmpty());
         });
     }
 

@@ -21,7 +21,7 @@
             </view>
             <loader id="on_gate_Dl">
                 <query>
-                    <![CDATA[select e from test_Planin e where e.status = '30' and e.condition = '20']]>
+                    <![CDATA[select e from test_Planin e where e.status = '30' and e.condition = '30']]>
                 </query>
             </loader>
         </collection>

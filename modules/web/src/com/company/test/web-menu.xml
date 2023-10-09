@@ -5,7 +5,11 @@
         <item screen="test_Client.browse" caption="mainMsg://menu_config.test_Client.browse"/>
         <item screen="test_Planin.browse" caption="mainMsg://menu_config.test_Planin.browse"/>
     </menu>
-    <item screen="test_Gate.browse" id="gate_browser" caption="mainMsg://menu_config.gate_browser" openType="NEW_TAB"/>
-    <item screen="test_Client.browse" id="client_browser" caption="mainMsg://menu_config.client_browser"/>
-    <item screen="test_Planin.browse" id="planin_browser" caption="mainMsg://menu_config.planin_browser"/>
+    <menu id = "planin" caption="Приёмка">
+        <item screen="test_Planin.browse" id="planin_browser" caption="mainMsg://menu_config.planin_browser"/>
+    </menu>
+    <menu id="dictionary" caption="Справочники">
+        <item screen="test_Gate.browse" id="gate_browser" caption="mainMsg://menu_config.gate_browser" openType="NEW_TAB"/>
+        <item screen="test_Client.browse" id="client_browser" caption="mainMsg://menu_config.client_browser"/>
+    </menu>
 </menu-config>
