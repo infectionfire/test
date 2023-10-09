@@ -5,6 +5,10 @@ import com.company.test.enums.VehicleStatus;
 import com.company.test.service.PlaninService;
 import com.haulmont.cuba.core.global.CommitContext;
 import com.haulmont.cuba.core.global.DataManager;
+import com.haulmont.cuba.security.app.Authenticated;
+import org.slf4j.Logger;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
@@ -12,16 +16,17 @@ import java.util.Date;
 import java.util.List;
 
 @Component
-public class AutomaticDepartureScheduler {
+@EnableScheduling
+public class LeftStatusUpdateScheduler {
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(LeftStatusUpdateScheduler.class);
     @Inject
     private PlaninService planinService;
     @Inject
     private DataManager dataManager;
 
-    public AutomaticDepartureScheduler() {
-    }
-
-    private void processClientEvents() {
+    @Authenticated
+    @Scheduled(cron = "0 0/30 10-18 * * *")
+    public void run() {
         List<Planin> planins = planinService.findCandidatesToLeft();
         if (!planins.isEmpty()) {
             CommitContext ctx = new CommitContext();
@@ -31,8 +36,8 @@ public class AutomaticDepartureScheduler {
                 planin.setDepartureDate(new Date());
                 ctx.addInstanceToCommit(planin);
             });
+            log.info("вызван шедулер, обновлено " + ctx.getCommitInstances().size() + " объектов");
             dataManager.commit(ctx);
-            System.out.println("вызван шедулер");
         }
     }
 }

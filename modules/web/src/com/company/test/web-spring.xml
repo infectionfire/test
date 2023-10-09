@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:gui="http://schemas.haulmont.com/cuba/spring/cuba-gui.xsd"
-       xmlns:task="http://www.springframework.org/schema/task" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+       xmlns:gui="http://schemas.haulmont.com/cuba/spring/cuba-gui.xsd">
 
     <!-- Annotation-based beans -->
     <context:component-scan base-package="com.company.test"/>
@@ -15,7 +13,6 @@
             <map>
                 <entry key="test_PlaninService" value="com.company.test.service.PlaninService"/>
                 <entry key="test_GateService" value="com.company.test.service.GateService"/>
-                <entry key="test_AutomaticDepartureService" value="com.company.test.core.AutomaticDepartureService"/>
             </map>
         </property>
     </bean>
